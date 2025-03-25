@@ -2,7 +2,7 @@ package promtail
 
 import (
 	"bytes"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"time"
 )
@@ -56,7 +56,7 @@ func (client *httpClient) sendJsonReq(method, url string, ctype string, reqBody 
 	}
 	defer resp.Body.Close()
 
-	resBody, err = ioutil.ReadAll(resp.Body)
+	resBody, err = io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, nil, err
 	}

@@ -1,11 +1,11 @@
 package promtail
 
 import (
-	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/golang/snappy"
 	"github.com/habakke/promtail-client/logproto"
 	"golang.org/x/oauth2"
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"log"
 	"net/http"
 	"sync"
@@ -49,7 +49,7 @@ func (c *clientProto) Log(line string, level LogLevel, extraLabels LabelSet) {
 	now := time.Now().UnixNano()
 	c.entries <- protoLogEntry{
 		entry: &logproto.Entry{
-			Timestamp: &timestamp.Timestamp{
+			Timestamp: &timestamppb.Timestamp{
 				Seconds: now / int64(time.Second),
 				Nanos:   int32(now % int64(time.Second)),
 			},

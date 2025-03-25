@@ -4,6 +4,8 @@ package logproto;
 
 import "google/protobuf/timestamp.proto";
 
+option go_package = "github.com/habakke/promtail/logproto";
+
 message PushRequest {
   repeated Stream streams = 1;
 }

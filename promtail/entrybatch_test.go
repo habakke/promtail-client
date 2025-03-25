@@ -2,8 +2,8 @@ package promtail
 
 import (
 	"fmt"
-	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/habakke/promtail-client/logproto"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"testing"
 	"time"
 )
@@ -33,7 +33,7 @@ func TestBatchMapGrouping(t *testing.T) {
 		}
 
 		now := time.Now()
-		ts := &timestamp.Timestamp{
+		ts := &timestamppb.Timestamp{
 			Seconds: now.UnixNano() / int64(time.Second),
 			Nanos:   int32(now.UnixNano() % int64(time.Second)),
 		}
